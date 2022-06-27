@@ -8,9 +8,10 @@ namespace ProductReview
         {
             ProductManagement getMethod = new ProductManagement();
             var table = getMethod.AddData();
+            var dataTable = getMethod.DataTable();
 
             Console.WriteLine("Enter 1 to View Data\n2 to view Top 3 Data\n3 to view Rating > 3\n4 to Count ProductID" +
-                "\n5 to view ProductID and Review\n6 to Skip Records\n\nEnter a Number");
+                "\n5 to view ProductID and Review\n6 to Skip Records\n7 to view DataTable\n\nEnter a Number");
             int userInput = Convert.ToInt32(Console.ReadLine());
 
             switch(userInput)
@@ -43,6 +44,11 @@ namespace ProductReview
                 case 6:
                     {
                         getMethod.SkipRecords(table);
+                        break;
+                    }
+                case 7:
+                    {
+                        getMethod.ViewDataTable(dataTable);
                         break;
                     }
                 default:
