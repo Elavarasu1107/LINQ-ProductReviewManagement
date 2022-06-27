@@ -9,6 +9,7 @@ namespace ProductReview
 {
     public class ProductManagement
     {
+       public readonly DataTable datatable = new DataTable();
         public List<ProductModel> AddData()
         {
             List<ProductModel> table = new List<ProductModel>()
@@ -97,7 +98,6 @@ namespace ProductReview
         }
         public DataTable DataTable()
         {
-            DataTable datatable = new DataTable();
             datatable.Columns.Add("ProductID",typeof(Int32));
             datatable.Columns.Add("UserID", typeof(Int32));
             datatable.Columns.Add("Rating",typeof(double));
@@ -128,7 +128,12 @@ namespace ProductReview
             datatable.Rows.Add(17, 1, 4.2, "Nice", true);
             datatable.Rows.Add(17, 2, 3.7, "Okay", true);
             datatable.Rows.Add(17, 3, 3.0, "Bad", true);
-            datatable.Rows.Add(18, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(18, 1, 4.5, "Nice", true);
+            datatable.Rows.Add(21, 1, 3.5, "Okay", true);
+            datatable.Rows.Add(22, 1, 3.7, "Okay", true);
+            datatable.Rows.Add(23, 1, 4.7, "Nice", true);
+            datatable.Rows.Add(24, 1, 4.5, "Nice", true);
+            datatable.Rows.Add(25, 1, 2.5, "Bad", false);
 
             return datatable;
         }
@@ -143,7 +148,7 @@ namespace ProductReview
         }
         public void IsLike(DataTable products)
         {
-            var data = products.AsEnumerable().Where(x => (x.Field<string>("IsLike") == "True"));
+            var data = products.AsEnumerable().Where(x => (x.Field<bool>("IsLike") == true));
             foreach (var item in data)
             {
                 Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " +
@@ -162,6 +167,15 @@ namespace ProductReview
         public void ReviewMessage(DataTable products)
         {
             var data = products.AsEnumerable().Where(x => (x.Field<string>("Review") == "Nice"));
+            foreach (var item in data)
+            {
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " +
+                    item.Field<double>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tIsLike: " + item.Field<bool>("IsLike"));
+            }
+        }
+        public void AdditionalData(DataTable products)
+        {
+            var data = products.AsEnumerable().OrderBy(x => (x.Field<double>("Rating"))).Where(x => (x.Field<int>("UserId") == 1));
             foreach (var item in data)
             {
                 Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " +
