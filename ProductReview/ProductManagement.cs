@@ -82,10 +82,18 @@ namespace ProductReview
         public void SelectOperator(List<ProductModel> products)
         {
             var data = products.Select(x => (x.productID, x.review));
-
             foreach (var item in data)
             {
                 Console.WriteLine("ProductID: " + item.productID + "\tReview: " + item.review);
+            }
+        }
+        public void SkipRecords(List<ProductModel> products)
+        {
+            var data = products.OrderByDescending(x => (x.rating)).Skip(5);
+            foreach (var item in data)
+            {
+                Console.WriteLine("ProductID: " + item.productID + "\tUserID: " + item.userID + "\tRating: " + item.rating + "\tReview: " +
+                     item.review + "\tIsLike: " + item.isLike);
             }
         }
     }
