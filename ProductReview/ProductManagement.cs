@@ -9,7 +9,6 @@ namespace ProductReview
 {
     public class ProductManagement
     {
-        public readonly DataTable table = new DataTable(); 
         public List<ProductModel> AddData()
         {
             List<ProductModel> table = new List<ProductModel>()
@@ -158,6 +157,15 @@ namespace ProductReview
             foreach (var item in data)
             {
                 Console.WriteLine("ProductID: " + item.productID + "\tAverage: " + item.average);
+            }
+        }
+        public void ReviewMessage(DataTable products)
+        {
+            var data = products.AsEnumerable().Where(x => (x.Field<string>("Review") == "Nice"));
+            foreach (var item in data)
+            {
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " +
+                    item.Field<double>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tIsLike: " + item.Field<bool>("IsLike"));
             }
         }
     }
