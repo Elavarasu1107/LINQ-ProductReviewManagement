@@ -99,47 +99,47 @@ namespace ProductReview
         public DataTable DataTable()
         {
             DataTable datatable = new DataTable();
-            datatable.Columns.Add("ProductID");
-            datatable.Columns.Add("UserID");
-            datatable.Columns.Add("Rating");
-            datatable.Columns.Add("Review");
-            datatable.Columns.Add("IsLike");
+            datatable.Columns.Add("ProductID",typeof(Int32));
+            datatable.Columns.Add("UserID", typeof(Int32));
+            datatable.Columns.Add("Rating",typeof(double));
+            datatable.Columns.Add("Review", typeof(string));
+            datatable.Columns.Add("IsLike", typeof(bool));
 
-            datatable.Rows.Add(10, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(10, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(10, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(11, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(11, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(11, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(12, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(12, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(12, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(13, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(13, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(13, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(14, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(14, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(14, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(15, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(15, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(15, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(16, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(16, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(16, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(17, 1, 4.2, "Nice", "True");
-            datatable.Rows.Add(17, 2, 3.7, "Okay", "True");
-            datatable.Rows.Add(17, 3, 3.0, "Bad", "False");
-            datatable.Rows.Add(18, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(10, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(10, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(10, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(11, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(11, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(11, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(12, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(12, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(12, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(13, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(13, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(13, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(14, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(14, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(14, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(15, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(15, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(15, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(16, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(16, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(16, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(17, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(17, 2, 3.7, "Okay", true);
+            datatable.Rows.Add(17, 3, 3.0, "Bad", true);
+            datatable.Rows.Add(18, 1, 4.2, "Nice", true);
 
             return datatable;
         }
         public void ViewDataTable(DataTable products)
         {
-            var column = from table in products.AsEnumerable() select table;
+            var column = products.AsEnumerable();
             foreach (var item in column)
             {
-                Console.WriteLine("ProductID: " + item.Field<string>("ProductID") + "\tUserID: " + item.Field<string>("UserID") + "\tRating: " + item.Field<string>("Rating") + "\tReview: " +
-                     item.Field<string>("Review") + "\tIsLike: " + item.Field<string>("IsLike"));
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " + 
+                    item.Field<double>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tIsLike: " + item.Field<bool>("IsLike"));
             }
         }
         public void IsLike(DataTable products)
@@ -147,8 +147,17 @@ namespace ProductReview
             var data = products.AsEnumerable().Where(x => (x.Field<string>("IsLike") == "True"));
             foreach (var item in data)
             {
-                Console.WriteLine("ProductID: " + item.Field<string>("ProductID") + "\tUserID: " + item.Field<string>("UserID") + "\tRating: " 
-            + item.Field<string>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tIsLike: " + item.Field<string>("IsLike"));
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " +
+                    item.Field<double>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tIsLike: " + item.Field<bool>("IsLike"));
+            }
+        }
+        public void AverageRating(DataTable products)
+        {
+            var data = products.AsEnumerable().GroupBy(x => (x.Field<int>("ProductID"))).
+                Select(x => new {productID = x.Key, average = x.Average(s => (s.Field<double>("Rating")))});
+            foreach (var item in data)
+            {
+                Console.WriteLine("ProductID: " + item.productID + "\tAverage: " + item.average);
             }
         }
     }
