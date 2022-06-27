@@ -105,31 +105,32 @@ namespace ProductReview
             datatable.Columns.Add("Review");
             datatable.Columns.Add("IsLike");
 
-            datatable.Rows.Add(10, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(10, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(10, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(11, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(11, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(11, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(12, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(12, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(12, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(13, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(13, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(13, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(14, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(14, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(14, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(15, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(15, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(15, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(16, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(16, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(16, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(17, 1, 4.2, "Nice", true);
-            datatable.Rows.Add(17, 2, 3.7, "Okay", true);
-            datatable.Rows.Add(17, 3, 3.0, "Bad", false);
-            datatable.Rows.Add(18, 1, 4.2, "Nice", true);
+            datatable.Rows.Add(10, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(10, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(10, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(11, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(11, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(11, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(12, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(12, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(12, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(13, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(13, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(13, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(14, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(14, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(14, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(15, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(15, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(15, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(16, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(16, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(16, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(17, 1, 4.2, "Nice", "True");
+            datatable.Rows.Add(17, 2, 3.7, "Okay", "True");
+            datatable.Rows.Add(17, 3, 3.0, "Bad", "False");
+            datatable.Rows.Add(18, 1, 4.2, "Nice", "True");
+
             return datatable;
         }
         public void ViewDataTable(DataTable products)
@@ -139,6 +140,15 @@ namespace ProductReview
             {
                 Console.WriteLine("ProductID: " + item.Field<string>("ProductID") + "\tUserID: " + item.Field<string>("UserID") + "\tRating: " + item.Field<string>("Rating") + "\tReview: " +
                      item.Field<string>("Review") + "\tIsLike: " + item.Field<string>("IsLike"));
+            }
+        }
+        public void IsLike(DataTable products)
+        {
+            var data = products.AsEnumerable().Where(x => (x.Field<string>("IsLike") == "True"));
+            foreach (var item in data)
+            {
+                Console.WriteLine("ProductID: " + item.Field<string>("ProductID") + "\tUserID: " + item.Field<string>("UserID") + "\tRating: " 
+            + item.Field<string>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tIsLike: " + item.Field<string>("IsLike"));
             }
         }
     }
