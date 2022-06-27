@@ -10,7 +10,7 @@ namespace ProductReview
             var table = getMethod.AddData();
 
             Console.WriteLine("Enter 1 to View Data\n2 to view Top 3 Data\n3 to view Rating > 3\n4 to Count ProductID" +
-                "\n\nEnter a Number");
+                "\n5 to view ProductID and Review\n\nEnter a Number");
             int userInput = Convert.ToInt32(Console.ReadLine());
 
             switch(userInput)
@@ -33,6 +33,11 @@ namespace ProductReview
                 case 4:
                     {
                         getMethod.Count(table);
+                        break;
+                    }
+                case 5:
+                    {
+                        getMethod.SelectOperator(table);
                         break;
                     }
                 default:
