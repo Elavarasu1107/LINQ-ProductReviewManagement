@@ -9,7 +9,8 @@ namespace ProductReview
             ProductManagement getMethod = new ProductManagement();
             var table = getMethod.AddData();
 
-            Console.WriteLine("Enter 1 to View Data\n2 to view Top 3 Data\n3 to view Rating > 3\n\nEnter a Number");
+            Console.WriteLine("Enter 1 to View Data\n2 to view Top 3 Data\n3 to view Rating > 3\n4 to Count ProductID" +
+                "\n\nEnter a Number");
             int userInput = Convert.ToInt32(Console.ReadLine());
 
             switch(userInput)
@@ -27,6 +28,11 @@ namespace ProductReview
                 case 3:
                     {
                         getMethod.SpecificRecords(table);
+                        break;
+                    }
+                case 4:
+                    {
+                        getMethod.Count(table);
                         break;
                     }
                 default:
